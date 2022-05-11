@@ -25,6 +25,12 @@ function countReducer(countState, action) {
         color: action.color
       };
     }
+    case 'reset': {
+      return {
+        count: countState.count === 0,
+        color: action.color
+      }
+    }
   }
 }
 export default function Counter() {
@@ -62,7 +68,10 @@ export default function Counter() {
   };
 
   const reset = () => {
-    setCount(0);
+    dispatch({
+      type: 'reset',
+      color: 'rgb(236, 222, 153)'
+    })
   };
 
   return (
