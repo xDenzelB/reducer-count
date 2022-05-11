@@ -27,7 +27,7 @@ function countReducer(countState, action) {
     }
     case 'reset': {
       return {
-        count: countState.count === 0,
+        count: 0,
         color: action.color
       }
     }
