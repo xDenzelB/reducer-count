@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import styles from './Counter.css';
 
 // const colors = {
@@ -22,6 +22,7 @@ function countReducer(countState, action) {
   }
 }
 export default function Counter() {
+  const [count, dispatch] = useReducer(countReducer, initialValue);
 
   // const [count, setCount] = useState(0);
   // const [currentColor, setCurrentColor] = useState(colors.yellow);
@@ -41,7 +42,10 @@ export default function Counter() {
   // }, [count]);
 
   const increment = () => {
-    setCount((prevState) => prevState + 1);
+    dispatch({
+      type: 'increment',
+      color: 'rgb(52, 211, 153)'
+    })
   };
 
   const decrement = () => {
@@ -54,13 +58,13 @@ export default function Counter() {
 
   return (
     <main className={styles.main}>
-      <h1 style={{ color: currentColor }}>{count}</h1>
+      <h1 style={{ color: count.color }}>{count.count}</h1>
       <div>
         <button
           type="button"
           onClick={increment}
           aria-label="increment"
-          style={{ backgroundColor: colors.green }}
+        
         >
           Increment
         </button>
@@ -68,7 +72,7 @@ export default function Counter() {
           type="button"
           onClick={decrement}
           aria-label="decrement"
-          style={{ backgroundColor: colors.red }}
+          
         >
           Decrement
         </button>
@@ -76,7 +80,7 @@ export default function Counter() {
           type="button"
           aria-label="reset"
           onClick={reset}
-          style={{ backgroundColor: colors.yellow }}
+          
         >
           Reset
         </button>
