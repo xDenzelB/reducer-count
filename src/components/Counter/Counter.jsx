@@ -19,6 +19,12 @@ function countReducer(countState, action) {
         color: action.color
       };
     }
+    case 'decrement': {
+      return {
+        count: countState.count - 1,
+        color: action.color
+      };
+    }
   }
 }
 export default function Counter() {
@@ -49,7 +55,10 @@ export default function Counter() {
   };
 
   const decrement = () => {
-    setCount((prevState) => prevState - 1);
+    dispatch({
+      type: 'decrement',
+      color: 'rgb(239, 68, 68)'
+    })
   };
 
   const reset = () => {
