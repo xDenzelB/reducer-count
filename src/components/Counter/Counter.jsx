@@ -37,21 +37,21 @@ export default function Counter() {
   const [count, dispatch] = useReducer(countReducer, initialValue);
 
   // const [count, setCount] = useState(0);
-  // const [currentColor, setCurrentColor] = useState(colors.yellow);
+  const [currentColor, setCurrentColor] = useState('rgb(236, 222, 153)');
 
-  // useEffect(() => {
-  //   if (count === 0) {
-  //     setCurrentColor(colors.yellow);
-  //   }
+  useEffect(() => {
+    if (count.count === 0) {
+      setCurrentColor('rgb(236, 222, 153)');
+    }
 
-  //   if (count > 0) {
-  //     setCurrentColor(colors.green);
-  //   }
+    if (count.count > 0) {
+      setCurrentColor('rgb(52, 211, 153)');
+    }
 
-  //   if (count < 0) {
-  //     setCurrentColor(colors.red);
-  //   }
-  // }, [count]);
+    if (count.count < 0) {
+      setCurrentColor('rgb(239, 68, 68)');
+    }
+  }, [count.count]);
 
   const increment = () => {
     dispatch({
@@ -76,7 +76,7 @@ export default function Counter() {
 
   return (
     <main className={styles.main}>
-      <h1 style={{ color: count.color }}>{count.count}</h1>
+      <h1 style={{ color: currentColor }}>{count.count}</h1>
       <div>
         <button
           type="button"
